@@ -1,5 +1,6 @@
 from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Dense, Activation, Dropout, Flatten
+from keras.regularizers import l2
 
 class cifarNet:
     @staticmethod
@@ -19,7 +20,7 @@ class cifarNet:
 
 
         model.add(Flatten())
-        model.add(Dense(500))
+        model.add(Dense(500, kernel_regularizer=l2(0.01)))
         model.add(Activation('relu'))
         model.add(Dropout(0.5))
         model.add(Dense(no_classes))
